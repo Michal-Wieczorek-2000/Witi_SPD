@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string.h>
 
 using namespace std;
 
@@ -40,21 +41,74 @@ int wczytaj(std::vector < zadanie > &zad, int &N, string str) {
     }
     //zad.pop_back();
     infile.close();
-    cout << "Num" << num << endl;
-   cout << "N" << N << endl;
+    //cout << "Num" << num << endl;
+    //cout << "N" << N << endl;
 
     return 0;
 }
 
-int ALG(std::vector < zadanie > zad, int N ) {
-    int *tab_pom = new int[N * N];
-    return 0;
+int C(string ciag_bitowy, std::vector < zadanie > zad) {
+    int sum = 0;
+    for(int i=0; i<ciag_bitowy.length(); i++)
+    {
+        if(ciag_bitowy[i] == '1')
+        {
+            sum += zad[ciag_bitowy.length() - i-1].p;
+            cout << "Suma " << sum << endl;
+        }
+    }
+    return sum;
 }
+
+int Kara(int indeks, int C, std::vector < zadanie > zad) {
+    if(C <= zad[indeks].d)
+    {
+        return 0;
+    }
+    else
+    {
+        return (C - zad[indeks].d)*zad[indeks].w;
+    }
+}
+
+int F(string ciag_bitowy, std::vector < zadanie > zad, std::vector < int > &F_tab) {
+    string warunek;
+    int liczba_wystapien=0;
+    for (int i = 0; i < ciag_bitowy.length(); i++)
+    {
+        if (ciag_bitowy[i] == '1')
+        {
+            liczba_wystapien++;
+        }
+    }
+
+    for (int i = 0; i < ciag_bitowy.length(); i++) {
+        warunek += "0";
+    }
+
+    for (int i = 0; i < ciag_bitowy.length(); i++) {
+        if (ciag_bitowy == warunek)
+        {
+            F_tab.push_back(F(ciag_bitowy, zad, F_tab));
+        }
+        else
+        {
+            for (int i = 0; i < liczba_wystapien; i++) {
+                // Szukamy minimum z Funckji f
+                // Trzeba do³o¿yc konwersje ciagu do inta
+                // 
+            }
+            F_tab.push_back(F(ciag_bitowy, zad, F_tab));
+        }
+    }
+}
+
+
 
 int main() {
         
         std::vector < zadanie > zadania0;
-        std::vector < zadanie > zadania1;
+        /*std::vector < zadanie > zadania1;
         std::vector < zadanie > zadania2;
         std::vector < zadanie > zadania3;
         std::vector < zadanie > zadania4;
@@ -64,12 +118,17 @@ int main() {
         std::vector < zadanie > zadania8;
         std::vector < zadanie > zadania9;
         std::vector < zadanie > zadania10;
-        
-        int N0 = 0;int N1 = 0;int N2 = 0;int N3 = 0;int N4 = 0;int N5 = 0;int N6 = 0;int N7 = 0;int N8 = 0;int N9 = 0;int N10 = 0;
+        std::vector < zadanie > zadania11;
+        */
+        int N0 = 0;int N1 = 0;int N2 = 0;int N3 = 0;int N4 = 0;int N5 = 0;int N6 = 0;int N7 = 0;int N8 = 0;int N9 = 0;int N10 = 0; int N11 = 0;
 
-        string str = "witi1.txt";
+        string str = "witi0.txt";
         wczytaj(zadania0, N0, str);
-        str = "witi2.txt";
+
+        string ciag_bitowy = "0111";
+        cout << "C dla " << ciag_bitowy << " rowna sie " << C(ciag_bitowy, zadania0) << endl;
+        cout << "Kara " << Kara(0, C(ciag_bitowy, zadania0), zadania0) <<endl;
+        /*str = "witi2.txt";
         wczytaj(zadania1, N1, str);
         str = "witi3.txt";
         wczytaj(zadania2, N2, str);
@@ -89,15 +148,15 @@ int main() {
         wczytaj(zadania9, N9, str);
         str = "witi11.txt";
         wczytaj(zadania10, N10, str);
-
-        /*for (int i = 0; i < N0; i++) // reads file to end of *file*, not line
+        */
+        for (int i = 0; i < N0; i++) // reads file to end of *file*, not line
         {
             cout << zadania0[i].p << " "; // read first column number
             cout << zadania0[i].w << " "; // read first column number
             cout << zadania0[i].d << " "; // read first column number
             cout << endl;
 
-        }*/
+        }
         /*int* X;
 
         int czasMax = 0;

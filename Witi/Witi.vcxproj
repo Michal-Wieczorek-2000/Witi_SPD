@@ -142,6 +142,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="witi0.txt" />
     <Text Include="witi1.txt" />
     <Text Include="witi10.txt" />
     <Text Include="witi11.txt" />

@@ -31,5 +31,6 @@
     <Text Include="witi9.txt" />
     <Text Include="witi10.txt" />
     <Text Include="witi11.txt" />
+    <Text Include="witi0.txt" />
   </ItemGroup>
 </Project>
